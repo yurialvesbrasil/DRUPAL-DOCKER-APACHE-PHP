@@ -1,0 +1,33 @@
+composer create-project drupal/recommended-project:8.9.0 app
+
+Ao atualizar este tutorial, deixo aqui algumas sugestões, um help para cada problema encontrado no passo a passo. Execute tudo logo de uma vez ou faça por partes.
+
+1 - The translations directory does not exist.
+
+mkdir -p app/web/sites/default/files/translations/
+2 - The translations directory is not writable.
+
+chmod 777 app/web/sites/default/files/translations/
+Após finalizar a instalação, não se esqueça de mudar suas permissões para chmod -R 555 app/web/sites/default/files/translations/.
+
+3 - Selecione um perfil de instalação: Padrão
+
+4 - Sistema de arquivos - Gravável (método de download público)
+
+chmod -R 777 app/web/sites/default/files/
+5 - O arquivo Arquivo de configurações não existe:
+
+cp app/web/sites/default/default.settings.php app/web/sites/default/settings.php
+6 - O Arquivo de configurações não pode ser escrito:
+
+chmod 777 app/web/sites/default/settings.php
+
+Incluir no settings.php:
+$settings['trusted_host_patterns'] = [
+  '^estudos\.drupal8\.com$',
+ ];
+
+--------------------------------------------------------------
+1 - Instalar modulo: 
+composer required drupal/pathauto
+
